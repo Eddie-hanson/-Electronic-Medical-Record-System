@@ -2,7 +2,7 @@ from django.shortcuts import render
 from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from rest_framework.response import Response
-from .models import RegisterPatient,patientEncouter,Nurse,PatientVitals
+from .models import RegisterPatient,PatientEncouter,Nurse,PatientVitals
 from .Serializer import RegisterPatientSerializer
 
 # Create your views here.

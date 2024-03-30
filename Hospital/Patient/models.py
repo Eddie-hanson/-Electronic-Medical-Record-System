@@ -28,7 +28,7 @@ class RegisterPatient(models.Model): #Class for registering patients
 # #for a patient (Patient ID, Date and Time, 
 # Type of encounter (Emergency/OPD/Specialist Care]-check how    
 
-class patientEncouter(models.Model):
+class PatientEncouter(models.Model):
     ENCOUNTER_CHOICES=(('Emergency','Emergency'),
                        ('OPD','OPD'),
                        ('Specialtist Care','Specialtist Care'),
