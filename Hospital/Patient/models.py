@@ -28,7 +28,7 @@ class RegisterPatient(models.Model): #Class for registering patients
 # #for a patient (Patient ID, Date and Time, 
 # Type of encounter (Emergency/OPD/Specialist Care]-check how    
 
-class PatientEncouter(models.Model):
+class PatientEncounter(models.Model):
     ENCOUNTER_CHOICES=(('Emergency','Emergency'),
                        ('OPD','OPD'),
                        ('Specialtist Care','Specialtist Care'),
@@ -39,6 +39,7 @@ class PatientEncouter(models.Model):
     Date=models.DateField(("Date"), auto_now=True, auto_now_add=False)
     Time=models.TimeField(("Time"), auto_now=True, auto_now_add=False)
     Encounter=models.CharField(max_length=20,choices= ENCOUNTER_CHOICES)
+    Description=models.TextField()
     
 #Nurse should be able to submit patient vitals (Blood pressure/Temperature/Pulse/SP02). -check how.  
 class Nurse(models.Model):
