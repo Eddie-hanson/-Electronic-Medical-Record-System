@@ -22,6 +22,8 @@ class RegisterPatient(models.Model): #Class for registering patients
     EmergencyContact= models.CharField(max_length=20)
     RelationshipwithPatient=models.CharField(max_length=20)
     
+    def __str__(self):
+        return self.OtherNames
     
     
 #2.	The front-desk should be able to start an encounter (visitation) 
@@ -31,15 +33,17 @@ class RegisterPatient(models.Model): #Class for registering patients
 class PatientEncounter(models.Model):
     ENCOUNTER_CHOICES=(('Emergency','Emergency'),
                        ('OPD','OPD'),
-                       ('Specialtist Care','Specialtist Care'),
+                       ('Specialist Care','Specialist Care'),
                     
                        )
-    
+    PatientName=models.ForeignKey(RegisterPatient, on_delete=models.CASCADE)
     patientID= models.IntegerField()
     Date=models.DateField(("Date"), auto_now=True, auto_now_add=False)
     Time=models.TimeField(("Time"), auto_now=True, auto_now_add=False)
     Encounter=models.CharField(max_length=20,choices= ENCOUNTER_CHOICES)
     Description=models.TextField()
+    def __str__(self):
+        return f'Name: {self.PatientName}'
     
 #Nurse should be able to submit patient vitals (Blood pressure/Temperature/Pulse/SP02). -check how.  
 class Nurse(models.Model):
@@ -60,4 +64,4 @@ class PatientVitals(models.Model):
     submission_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{self.patient_name}'s Vitals - {self.submission_date},{self.nurse}"
+        return f"{self.patient_name}'s Vitals - {self.submission_date} by {self.nurse}"

@@ -9,10 +9,11 @@ class RegisterPatientSerializer(serializers.ModelSerializer):
         
         
 class PatientEncounterSerializer(serializers.ModelSerializer) :   
-    # nurse_name = serializers.CharField(source='nurse.name', read_only=True) 
+    Patientname = serializers.CharField(source='PatientName.OtherNames', read_only=True) 
     class Meta:
         model=PatientEncounter
-        fields='__all__'
+       
+        exclude=['PatientName']
         
 class PatientVitalsSerializer(serializers.ModelSerializer):
     NurseName = serializers.CharField(source='nurse.name', read_only=True)

@@ -17,7 +17,6 @@ def CreatePatient(request):
     return Response(serializer1.data)
 
 
-
 def PatientsList(request):
    Patient=RegisterPatient.objects.all()
    serializer1=RegisterPatientSerializer(Patient, many = True)
@@ -45,6 +44,9 @@ def updatePatient(request, pk):
     
     
    return Response(serializer1.errors, status=400)
+
+
+
 
 
 def PatientEncounterlist(request): # to view all encounters
@@ -94,6 +96,9 @@ def DeletePatientEncounter(request, pk):
    return Response(status=status.HTTP_204_NO_CONTENT)
 
 
+
+
+
 @api_view(['POST'])
 def CreatePatientVitals(request):
    Serializer3=PatientVitalsSerializer(data=request.data)
@@ -107,16 +112,19 @@ def ListPatientVitals(request):
    return JsonResponse(Serializer3.data, safe=False)
 
 def PatientVitalsDetails(request,pk):
+   Vitals=PatientVitals.objects.get(id=pk)
+   Serializer3=PatientVitalsSerializer(Vitals)
    try:
-      Vitals=PatientVitals.object.get(pk=pk)
+      Vitals=PatientVitals.objects.get(pk=pk)
+      return JsonResponse(Serializer3.data)
    except PatientVitals.DoesNotExist:
      return JsonResponse('No vitals to show for this patient')   
   
 @api_view(['PUT'])
-def PatientVitalsDetails(request, pk):
-   Vitals=PatientVitals.objects.get(pk=pk)
+def PatientVitalsUpdate(request, pk):
+   Vitals=PatientVitals.objects.get(PatientVitals,pk=pk)
    
-   Serializer3=PatientVitalsSerializer(data=request.data)
+   Serializer3=PatientVitalsSerializer(Vitals, data=request.data)
    if Serializer3.is_valid():
       Serializer3.save()
    return Response(Serializer3.data)   
