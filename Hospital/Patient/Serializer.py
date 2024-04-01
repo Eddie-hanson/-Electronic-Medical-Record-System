@@ -1,6 +1,6 @@
 
 from rest_framework import serializers
-from .models import RegisterPatient, PatientEncounter
+from .models import RegisterPatient, PatientEncounter,PatientVitals
 
 class RegisterPatientSerializer(serializers.ModelSerializer):
     class Meta:
@@ -13,3 +13,7 @@ class PatientEncounterSerializer(serializers.ModelSerializer) :
         model=PatientEncounter
         fields='__all__'
         
+class PatientVitalsSerializer(serializers.ModelSerializer):
+    class Meta:
+        model=PatientVitals
+        fields='__all__'        

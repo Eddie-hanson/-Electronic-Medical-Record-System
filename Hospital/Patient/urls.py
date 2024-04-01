@@ -13,5 +13,11 @@ urlpatterns = [
     path('Visitaion/PatientEncounterUpdate/<int:pk>/', views.PatientEncounterUpdate, name='PatientEncounterUpdate'),
     path('Visitaion/PatientEncounterDetail/<int:pk>/', views.PatientEncounterDetail, name='PatientEncounterDetail'),
     path('Visitation/DeletePatientEncounter/<int:pk>/', views.DeletePatientEncounter, name='DeletePatientEncounter'),
+    
+    
+    path('Vitals/',views.ListPatientVitals, name='ListPatientVitals'),
+    path('Vitals/CreatePatientVitals/',views.CreatePatientVitals, name='CreatePatientVitals'),
+    path('Vitals/PatientVitalsDetails/<int:pk>/', views.PatientVitalsDetails, name='PatientVitalsDetails'),
+    
 
 ]

@@ -60,4 +60,4 @@ class PatientVitals(models.Model):
     submission_date = models.DateTimeField(auto_now_add=True)
     
     def __str__(self):
-        return f"{self.patient_name}'s Vitals - {self.submission_date}"
+        return f"{self.patient_name}'s Vitals - {self.submission_date},{self.nurse}"

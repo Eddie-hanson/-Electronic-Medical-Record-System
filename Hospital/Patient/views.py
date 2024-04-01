@@ -3,7 +3,7 @@ from rest_framework.decorators import api_view
 from django.http import JsonResponse
 from rest_framework.response import Response
 from .models import RegisterPatient,PatientEncounter,Nurse,PatientVitals
-from .Serializer import RegisterPatientSerializer, PatientEncounterSerializer
+from .Serializer import RegisterPatientSerializer, PatientEncounterSerializer,PatientVitalsSerializer
 from rest_framework import status
 
 # Create your views here.
@@ -92,3 +92,31 @@ def DeletePatientEncounter(request, pk):
       return Response(status=status.HTTP_404_NOT_FOUND)
    patient.delete()
    return Response(status=status.HTTP_204_NO_CONTENT)
+
+
+@api_view(['POST'])
+def CreatePatientVitals(request):
+   Serializer3=PatientVitalsSerializer(data=request.data)
+   if Serializer3.is_valid():
+      Serializer3.save()
+   return Response(Serializer3.data)   
+
+def ListPatientVitals(request):
+   Vitals=PatientVitals.objects.all()
+   Serializer3=PatientVitalsSerializer(Vitals,many=True)
+   return JsonResponse(Serializer3.data, safe=False)
+
+def PatientVitalsDetails(request,pk):
+   try:
+      Vitals=PatientVitals.object.get(pk=pk)
+   except PatientVitals.DoesNotExist:
+     return JsonResponse('No vitals to show for this patient')   
+  
+  
+
+
+
+
+
+
+  
