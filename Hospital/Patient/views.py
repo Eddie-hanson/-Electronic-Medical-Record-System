@@ -112,6 +112,16 @@ def PatientVitalsDetails(request,pk):
    except PatientVitals.DoesNotExist:
      return JsonResponse('No vitals to show for this patient')   
   
+@api_view(['PUT'])
+def PatientVitalsDetails(request, pk):
+   Vitals=PatientVitals.objects.get(pk=pk)
+   
+   Serializer3=PatientVitalsSerializer(data=request.data)
+   if Serializer3.is_valid():
+      Serializer3.save()
+   return Response(Serializer3.data)   
+  
+  
   
 
 
