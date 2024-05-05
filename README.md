@@ -106,6 +106,8 @@ Endpoint: PUT /api/Vitals/PatientVitalsUpdate/int:pk/
 ## Usage:
 
 ### Clone the repository.
+clone: https://github.com/Eddie-hanson/-Electronic-Medical-Record-System.git
+
 Set up the Django project with PostgreSQL as the database backend.
 Implement the models, serializers, and views for various functionalities as mentioned above.
 Define the URL patterns for the endpoints.
